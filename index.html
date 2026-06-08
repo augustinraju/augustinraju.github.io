@@ -98,7 +98,10 @@
       flex-shrink: 0;
     }
     .lang-btn:hover { border-color: var(--accent); background: rgba(42,110,245,.07); }
-    .lang-btn .flag { font-size: 1rem; }
+    .lang-btn .flag {
+      display: flex;
+      align-items: center;
+    }
 
     /* Hamburger */
     .hamburger {
@@ -691,7 +694,13 @@
           <a href="#contact"    data-en="Contact"     data-de="Kontakt">Contact</a>
         </div>
         <button class="lang-btn" id="langToggle" onclick="toggleLang()">
-          <span class="flag" id="langFlag">🇩🇪</span>
+          <span class="flag" id="langFlag">
+            <svg id="flagSvg" width="20" height="14" viewBox="0 0 20 14" style="display:block;border-radius:2px;overflow:hidden">
+            <rect width="20" height="4.67" y="0"    fill="#000000"/>
+            <rect width="20" height="4.67" y="4.67" fill="#DD0000"/>
+            <rect width="20" height="4.67" y="9.33" fill="#FFCE00"/>
+          </svg>
+          </span>
           <span id="langLabel">DE</span>
         </button>
         <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
@@ -808,7 +817,7 @@
   <section id="achievements">
     <div class="wrap">
       <div class="section-label" data-en="Achievements" data-de="Erfolge">Achievements</div>
-      <h2 data-en="Milestones &amp; recognition" data-de=" Auszeichnungen">Recognition</h2>
+      <h2 data-en="Recognition" data-de=" Auszeichnungen">Recognition</h2>
       <div class="achievements-grid">
 
         <div class="achievement-card fade-in">
@@ -1188,24 +1197,40 @@
   <script>
     /* ── Language toggle ── */
     let lang = 'en';
-    function toggleLang() {
-      lang = lang === 'en' ? 'de' : 'en';
-      const btn = document.getElementById('langToggle');
-      document.getElementById('langFlag').textContent = lang === 'en' ? '🇩🇪' : '🇬🇧';
-      document.getElementById('langLabel').textContent  = lang === 'en' ? 'DE' : 'EN';
+    const FLAGS = {
+    en: `<rect width="20" height="14" fill="#012169"/>
+        <path d="M0,0 L20,14 M20,0 L0,14" stroke="#fff" stroke-width="3" fill="none"/>
+        <path d="M0,0 L20,14 M20,0 L0,14" stroke="#C8102E" stroke-width="1.8" fill="none"/>
+        <rect width="20" height="4.67" x="0" y="4.67" fill="#fff"/>
+        <rect width="8"  height="14"   x="6" y="0"    fill="#fff"/>
+        <rect width="20" height="2.8"  x="0" y="5.6"  fill="#C8102E"/>
+        <rect width="4.8" height="14"  x="7.6" y="0"  fill="#C8102E"/>`,
+    de: `<rect width="20" height="4.67" y="0"    fill="#000000"/>
+        <rect width="20" height="4.67" y="4.67" fill="#DD0000"/>
+        <rect width="20" height="4.67" y="9.33" fill="#FFCE00"/>`
+  };
 
-      // Update all elements with data-en / data-de
+  function setLang(newLang) {
+    lang = newLang;
+    const nextLang = lang === 'en' ? 'de' : 'en';
+
+      // Show current language flag, label shows what you switch TO
+      document.getElementById('flagSvg').innerHTML = FLAGS[nextLang];
+      document.getElementById('langLabel').textContent = nextLang.toUpperCase();
+
+      // Update all translated elements
       document.querySelectorAll('[data-en]').forEach(el => {
         const val = el.getAttribute('data-' + lang);
         if (val) el.innerHTML = val;
       });
-
-      // Update placeholders
       document.querySelectorAll('[data-placeholder-en]').forEach(el => {
         el.placeholder = el.getAttribute('data-placeholder-' + lang);
       });
-
       document.documentElement.lang = lang;
+    }
+
+    function toggleLang() {
+      setLang(lang === 'en' ? 'de' : 'en');
     }
 
     /* ── Mobile menu ── */
