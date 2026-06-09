@@ -15,6 +15,10 @@
       --border:   #dedad4;
       --accent:   #2a6ef5;
       --accent2:  #0e9e7a;
+      --accent-subtle:  rgba(42,110,245,.08);
+      --accent-border:  rgba(42,110,245,.18);
+      --accent-hover:   #1a5ce0;
+      --accent2-subtle: rgba(14,158,122,.07);
       --text:     #1a1814;
       --muted:    #7a7570;
       --serif:    'DM Serif Display', Georgia, serif;
@@ -142,7 +146,7 @@
     #hero {
       min-height: 100svh;
       display: flex; align-items: center;
-      padding: 100px 0 80px;
+      padding: 10px 0 10px;
       position: relative; overflow: hidden;
     }
     .hero-grid {
@@ -172,13 +176,13 @@
       font-size: clamp(1rem, 1.8vw, 1.15rem);
       color: var(--muted);
       max-width: 520px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       font-weight: 300;
     }
     .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 28px;
+      padding: 13px 18px;
       border-radius: 99px;
       font-size: .9rem; font-weight: 600;
       transition: all var(--trans);
@@ -188,10 +192,10 @@
     .btn-primary {
       background: var(--accent); color: #ffffff;
     }
-    .btn-primary:hover { background: #1a5ce0; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(42,110,245,.25); }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(42,110,245,.25); }
     .btn-ghost {
       background: transparent;
-      border: 1px solid var(--border);
+      border: 1px solid var(--muted);
       color: var(--text);
     }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
@@ -235,12 +239,12 @@
     }
     .blob-1 {
       width: 400px; height: 400px;
-      background: rgba(42,110,245,.08);
+      background: var(--accent-subtle);
       top: -100px; right: -150px;
     }
     .blob-2 {
       width: 300px; height: 300px;
-      background: rgba(14,158,122,.07);
+      background: var(--accent2-subtle);
       bottom: 0; left: -100px;
     }
     .hero-stats {
@@ -259,6 +263,8 @@
 
     /* ─── SECTION SHARED ─────────────────────────────────────── */
     section { padding: clamp(60px, 10vw, 120px) 0; }
+    section:nth-child(even) { background: var(--surface); }
+    section:nth-child(odd)  { background: var(--bg); }
     .section-label {
       font-size: .72rem; font-weight: 600; letter-spacing: .14em;
       text-transform: uppercase; color: var(--accent);
@@ -275,7 +281,7 @@
     }
 
     /* ─── ABOUT ──────────────────────────────────────────────── */
-    #about { background: var(--surface); }
+    #about {}
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -407,13 +413,13 @@
       border-radius: 99px;
       font-size: .72rem; font-weight: 600;
       letter-spacing: .04em;
-      background: rgba(42,110,245,.08);
+      background: var(--accent-subtle);
       color: var(--accent);
-      border: 1px solid rgba(42,110,245,.18);
+      border: 1px solid var(--accent-border);
     }
 
     /* ─── PROJECTS ───────────────────────────────────────────── */
-    #projects { background: var(--surface); }
+    #projects { }
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -462,7 +468,7 @@
     .project-link:hover { gap: 8px; }
 
     /* ─── SKILLS ─────────────────────────────────────────────── */
-    #skills { }
+    #skills {}
     .skills-wrapper {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -490,17 +496,17 @@
       transition: background var(--trans), border-color var(--trans), color var(--trans);
     }
     .skill-pill:hover {
-      background: rgba(42,110,245,.08);
+      background: var(--accent-subtle);
       border-color: rgba(42,110,245,.3);
       color: var(--accent);
     }
     .skill-pill.highlight {
-      background: rgba(42,110,245,.08);
+      background: var(--accent-subtle);
       border-color: rgba(42,110,245,.25);
       color: var(--accent);
     }
     /* ─── EDUCATION ──────────────────────────────────────────── */
-    #education { background: var(--surface); }
+    #education { }
     .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
     .edu-card {
       background: var(--card); border: 1px solid var(--border);
@@ -533,65 +539,56 @@
     .edu-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 
     /* ─── CONTACT ────────────────────────────────────────────── */
-    #contact { background: var(--surface); }
-    .contact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: start;
+    #contact {
+      background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px clamp(20px, 7vw, 108px);
     }
-    .contact-intro p { font-size: 1.05rem; color: var(--muted); font-weight: 300; line-height: 1.8; margin-bottom: 24px; }
-    .contact-links { display: flex; flex-direction: column; gap: 14px; }
-    .contact-link-item {
-      display: flex; align-items: center; gap: 16px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 20px;
-      transition: border-color var(--trans), transform var(--trans);
-    }
-    .contact-link-item:hover { border-color: rgba(42,110,245,.35); transform: translateX(4px); }
-    .contact-icon {
-      width: 38px; height: 38px;
-      border-radius: 8px;
-      background: rgba(42,110,245,.1);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--accent);
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .contact-link-label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; }
-    .contact-link-value { font-size: .9rem; font-weight: 500; }
-    .contact-form { display: flex; flex-direction: column; gap: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-label { font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-    .form-input, .form-textarea {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 12px 16px;
-      font-family: var(--sans);
-      font-size: .9rem;
+    .contact-heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -.022em;
       color: var(--text);
-      outline: none;
-      transition: border-color var(--trans);
-      resize: none;
-      width: 100%;
+      margin-bottom: 16px;
     }
-    .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
-    .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
-    .form-textarea { min-height: 120px; }
-    .form-submit {
-      align-self: flex-start;
-      background: var(--accent); color: #0d0d0f;
-      border: none; border-radius: 99px;
-      padding: 13px 32px;
-      font-family: var(--sans); font-size: .9rem; font-weight: 700;
-      cursor: pointer;
-      transition: all var(--trans);
+    .contact-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 40px;
     }
-    .form-submit:hover { background: #1a5ce0; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(42,110,245,.25); }
-
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px 24px;
+      margin-bottom: 40px;
+    }
+    .contact-info-item {
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--trans);
+    }
+    .contact-info-item:hover { color: var(--accent); }
+    .contact-sep {
+      color: var(--border);
+      font-size: .7rem;
+    }
+    .contact-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
     /* ─── FOOTER ─────────────────────────────────────────────── */
     footer {
       border-top: 1px solid var(--border);
@@ -617,7 +614,7 @@
     .fade-in.visible { opacity: 1; transform: none; }
 
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
-    @media (max-width: 768px) {
+    @media (max-width: 850px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 32px; }
@@ -628,7 +625,6 @@
       .about-grid { grid-template-columns: 1fr; }
       .tl-item { grid-template-columns: 80px 1px 1fr; }
       .tl-date { font-size: .72rem; }
-      .contact-inner { grid-template-columns: 1fr; }
       h2 { margin-bottom: 32px; }
     }
     @media (max-width: 480px) {
@@ -651,10 +647,7 @@
       h1, h2, h3, .section-label { page-break-after: avoid; break-after: avoid; }
 
       /* Keep these elements whole — don't split them across pages */
-      .tl-item, .project-card, .edu-card, .highlight-card, .skill-group, .contact-link-item {
-        page-break-inside: avoid;
-        break-inside: avoid;
-      }
+      .tl-item, .project-card, .edu-card, .highlight-card, .skill-group, .
 
       /* Keep a timeline item's dot/line/content together */
       .tl-content { page-break-before: avoid; break-before: avoid; }
@@ -678,20 +671,20 @@
   </style>
 </head>
 <body>
-
+  
   <!-- ─── NAV ──────────────────────────────────────────────── -->
   <nav>
     <div class="wrap">
       <div class="nav-inner">
         <div class="nav-logo">Augustin<span>.</span>Raju</div>
         <div class="nav-links">
-          <a href="#about"      data-en="About"      data-de="Über">About</a>
-          <a href="#achievements" data-en="Achievements" data-de="Erfolge">Achievements</a>
-          <a href="#experience" data-en="Experience"  data-de="Erfahrung">Experience</a>
-          <a href="#projects"   data-en="Projects"    data-de="Projekte">Projects</a>
-          <a href="#skills"     data-en="Skills"      data-de="Kenntnisse">Skills</a>
-          <a href="#education"  data-en="Education"   data-de="Ausbildung">Education</a>
-          <a href="#contact"    data-en="Contact"     data-de="Kontakt">Contact</a>
+          <a href="#about"      data-en="About"      data-de="Über"></a>
+          <a href="#achievements" data-en="Achievements" data-de="Erfolge"></a>
+          <a href="#experience" data-en="Experience"  data-de="Erfahrung"></a>
+          <a href="#projects"   data-en="Projects"    data-de="Projekte"></a>
+          <a href="#skills"     data-en="Skills"      data-de="Kenntnisse"></a>
+          <a href="#education"  data-en="Education"   data-de="Ausbildung"></a>
+          <a href="#contact"    data-en="Contact"     data-de="Kontakt"></a>
         </div>
         <button class="lang-btn" id="langToggle" onclick="toggleLang()">
           <span class="flag" id="langFlag">
@@ -708,13 +701,13 @@
         </button>
       </div>
       <div class="mobile-menu" id="mobileMenu">
-        <a href="#about"      onclick="toggleMenu()" data-en="About"      data-de="Über">About</a>
-        <a href="#achievements" onclick="toggleMenu()" data-en="Achievements" data-de="Erfolge">Achievements</a>
-        <a href="#experience" onclick="toggleMenu()" data-en="Experience"  data-de="Erfahrung">Experience</a>
-        <a href="#projects"   onclick="toggleMenu()" data-en="Projects"    data-de="Projekte">Projects</a>
-        <a href="#skills"     onclick="toggleMenu()" data-en="Skills"      data-de="Kenntnisse">Skills</a>
-        <a href="#education"  onclick="toggleMenu()" data-en="Education"   data-de="Ausbildung">Education</a>
-        <a href="#contact"    onclick="toggleMenu()" data-en="Contact"     data-de="Kontakt">Contact</a>
+        <a href="#about"      onclick="toggleMenu()" data-en="About"      data-de="Über"></a>
+        <a href="#achievements" onclick="toggleMenu()" data-en="Achievements" data-de="Erfolge"></a>
+        <a href="#experience" onclick="toggleMenu()" data-en="Experience"  data-de="Erfahrung"></a>
+        <a href="#projects"   onclick="toggleMenu()" data-en="Projects"    data-de="Projekte"></a>
+        <a href="#skills"     onclick="toggleMenu()" data-en="Skills"      data-de="Kenntnisse"></a>
+        <a href="#education"  onclick="toggleMenu()" data-en="Education"   data-de="Ausbildung"></a>
+        <a href="#contact"    onclick="toggleMenu()" data-en="Contact"     data-de="Kontakt"></a>
       </div>
     </div>
   </nav>
@@ -727,31 +720,28 @@
       <div class="hero-grid">
         <div>
           <div class="hero-eyebrow" data-en="Research Associate · Based in Germany" data-de="Wissenschaftlicher Mitarbeiter · Standort Deutschland">
-            Research Associate · Based in Germany
           </div>
           <h1>
-            <span data-en="Building <em>robust</em> systems," data-de="<em>Robuste</em> Systeme,">Building <em>robust</em> systems,</span><br>
-            <span data-en="one commit at a time." data-de="ein Commit nach dem anderen.">one commit at a time.</span>
+            <span data-en="Autonomy becomes reality" data-de="Autonomie wird Realität"></span><br>
           </h1>
-          <p class="hero-sub" data-en="M.Sc. Mechatronics graduate with academic experience. I enjoy working with robots, sensors and autonomous systems." data-de="M.Sc. Mechatronik Absolvent mit akademischer Erfahrung. Ich arbeite gerne mit Robotern, Sensoren und autonomen Systemen.">
-            M.Sc. Mechatronics graduate with academic experience. I enjoy working with robots, sensors and autonomous systems.
+          <p class="hero-sub" data-en="Mechatronics Engineer building the future of autonomous systems" data-de="Mechatronik Ingenieur, der die Zukunft autonomer Systeme gestaltet">
           </p>
           <div class="hero-cta">
-            <a href="#contact" class="btn btn-primary" data-en="Get in Touch" data-de="Kontakt aufnehmen">Get in Touch</a>
-            <a href="#projects" class="btn btn-ghost" data-en="View Projects" data-de="Projekte ansehen">View Projects</a>
+            <a href="#contact" class="btn btn-primary" data-en="Get in Touch" data-de="Kontakt aufnehmen"></a>
+            <a href="#projects" class="btn btn-ghost" data-en="View Projects" data-de="Projekte ansehen"></a>
           </div>
           <div class="hero-stats">
             <div>
               <div class="stat-num">1+</div>
-              <div class="stat-label" data-en="Year Experience" data-de="Jahr Erfahrung">Year Experience</div>
+              <div class="stat-label" data-en="Year Experience" data-de="Jahr Erfahrung"></div>
             </div>
             <div>
               <div class="stat-num">M.Sc.</div>
-              <div class="stat-label" data-en="Mechatronics" data-de="Mechatronik">Mechatronics</div>
+              <div class="stat-label" data-en="Mechatronics" data-de="Mechatronik"></div>
             </div>
             <div>
               <div class="stat-num">5+</div>
-              <div class="stat-label" data-en="Projects Built" data-de="Projekte gebaut">Projects Built</div>
+              <div class="stat-label" data-en="Projects Built" data-de="Projekte gebaut"></div>
             </div>
           </div>
         </div>
@@ -765,47 +755,44 @@
   <!-- ─── ABOUT ──────────────────────────────────────────────── -->
   <section id="about">
     <div class="wrap">
-      <div class="section-label" data-en="About Me" data-de="Über mich">About Me</div>
-      <h2 data-en="Who I am" data-de="Wer ich bin">Who I am</h2>
+      <div class="section-label" data-en="About Me" data-de="Über mich"></div>
+      <h2 data-en="Who I am" data-de="Wer ich bin"></h2>
       <div class="about-grid fade-in">
         <div class="about-body">
-          <p data-en="I'm <strong>Augustin Raju</strong>, a research associate based in Germany. After completing my <strong>Master's degree in Mechatronics</strong>, I joined TH Cologne where I've been building robotic systems for almost a year." data-de="Ich heiße <strong>Augustin Raju</strong>, ein Wissenschaftlicher Mitarbeiter aus Deutschland. Nach meinem <strong>Master Abschluss in Mechatronik</strong> trat ich in die TH Köln ein, wo ich seit fast einem Jahr Robotik-Systeme entwickle.">
-            I'm <strong>Augustin Raju</strong>, a research associate based in Germany. After completing my <strong>Master's degree in Mechatronics</strong>, I joined TH Cologne where I've been building robotic systems for almost a year.
+          <p data-en="I'm <strong>Augustin Raju</strong>, a Mechatronics Engineer and Research Associate based in Germany. My work revolves around designing, testing, and deploying end-to-end autonomous systems. Currently, at TH Köln, I build intelligent robotic prototypes for regional industrial applications—a domain where my team recently secured 1st place at the Robocup German Open 2026 by integrating complex ROS2 and Nav2 architectures." data-de="Ich bin <strong>Augustin Raju</strong>, Mechatronik Ingenieur und Wissenschaftlicher Mitarbeiter in Deutschland. Meine Arbeit dreht sich um die Entwicklung, Erprobung und Implementierung von End-to-End autonomen Systemen. Derzeit baue ich an der TH Köln intelligente Robotikprototypen für regionale Industrieanwendungen – ein Bereich, in dem mein Team kürzlich den 1. Platz bei der Robocup German Open 2026 durch die Integration komplexer ROS2- und Nav2-Architekturen errungen hat.">
           </p>
-          <p data-en="My thesis focused on <strong>autonomous driving</strong>, and during my internship at Volkswagen AG, I worked on autonomous vehicle control systems." data-de="Meine Thesis beschäftigte sich mit <strong>Autonomem Fahren</strong>. Während meines Praktikums bei der Volkswagen AG arbeitete ich an Steuerungssystemen für autonome Fahrzeuge.">
-            My thesis focused on <strong>autonomous driving</strong>, and during my internship at Volkswagen AG, I worked on autonomous vehicle control systems.
+          <p data-en="Blending deep theoretical insight with a hands-on approach, I previously developed Physics Informed Neural Networks (PINNs) for autonomous driving at Volkswagen AG and built rigid-body dynamic simulations at IIST." data-de="Mit einer Mischung aus tiefem theoretischem Verständnis und praktischer Herangehensweise habe ich zuvor Physics Informed Neural Networks (PINNs) für autonomes Fahren bei Volkswagen AG entwickelt und starre Körperdynamiksimulationen am IIST erstellt.">
           </p>
-          <p data-en="I value clear communication, iterative delivery, and writing code that the next engineer will enjoy reading." data-de="Ich lege Wert auf klare Kommunikation, iterative Lieferung und Code, den der nächste Ingenieur gerne lesen wird.">
-            I value clear communication, iterative delivery, and writing code that the next engineer will enjoy reading.
+          <p data-en=" I am highly motivated by cross-functional challenges, clean system architecture, and robust engineering that performs reliably in the real world." data-de="Ich bin hoch motiviert von funktionsübergreifenden Herausforderungen, sauberer Systemarchitektur und robuster Technik, die in der realen Welt zuverlässig funktioniert.">
           </p>
         </div>
         <div class="about-highlights">
           <div class="highlight-card">
             <div class="highlight-icon">🎓</div>
             <div>
-              <div class="highlight-title" data-en="M.Sc. Mechatronics" data-de="M.Sc. Mechatronik">M.Sc. Mechatronics</div>
-              <div class="highlight-desc" data-en="University of Siegen · Thesis on Autonomous Driving" data-de="Universität Siegen · Thesis über Autonomes Fahren">University of Siegen · Thesis on Autonomous Driving</div>
+              <div class="highlight-title" data-en="M.Sc. Mechatronics" data-de="M.Sc. Mechatronik"></div>
+              <div class="highlight-desc" data-en="University of Siegen · Thesis on Autonomous Driving" data-de="Universität Siegen · Thesis über Autonomes Fahren"></div>
             </div>
           </div>
           <div class="highlight-card">
             <div class="highlight-icon">🏢</div>
             <div>
-              <div class="highlight-title" data-en="Research Associate at TH Cologne" data-de="Wissenschaftlicher Mitarbeiter bei TH Köln">Research Associate at TH Cologne</div>
-              <div class="highlight-desc" data-en="Building robotic systems since September 2025" data-de="Entwicklung von Robotik-Systemen seit September 2025">Building robotic systems since September 2025</div>
+              <div class="highlight-title" data-en="Research Associate at TH Cologne" data-de="Wissenschaftlicher Mitarbeiter bei TH Köln"></div>
+              <div class="highlight-desc" data-en="Building robotic systems since September 2025" data-de="Entwicklung von Robotik-Systemen seit September 2025"></div>
             </div>
           </div>
           <div class="highlight-card">
             <div class="highlight-icon">🌍</div>
             <div>
-              <div class="highlight-title" data-en="Languages" data-de="Sprachen">Languages</div>
-              <div class="highlight-desc" data-en="German (B1) · English (C1)" data-de="Deutsch (B1) · Englisch (C1)">German (B1) · English (C1) </div>
+              <div class="highlight-title" data-en="Languages" data-de="Sprachen"></div>
+              <div class="highlight-desc" data-en="German (B1) · English (C1)" data-de="Deutsch (B1) · Englisch (C1)"></div>
             </div>
           </div>
           <div class="highlight-card">
             <div class="highlight-icon">⚡</div>
             <div>
-              <div class="highlight-title" data-en="Interests" data-de="Interessen">Interests</div>
-              <div class="highlight-desc" data-en="F1 Racing · Robotics · Cooking" data-de="F1 Rennen · Robotik · Kochen">F1 Racing · Robotics · Cooking</div>
+              <div class="highlight-title" data-en="Interests" data-de="Interessen"></div>
+              <div class="highlight-desc" data-en="F1 Racing · Robotics · Cooking" data-de="F1 Rennen · Robotik · Kochen"></div>
             </div>
           </div>
         </div>
@@ -816,8 +803,8 @@
   <!-- ACHIEVEMENTS -->
   <section id="achievements">
     <div class="wrap">
-      <div class="section-label" data-en="Achievements" data-de="Erfolge">Achievements</div>
-      <h2 data-en="Recognition" data-de=" Auszeichnungen">Recognition</h2>
+      <div class="section-label" data-en="Achievements" data-de="Erfolge"></div>
+      <h2 data-en="Recognition" data-de=" Auszeichnungen"></h2>
       <div class="achievements-grid">
 
         <div class="achievement-card fade-in">
@@ -827,10 +814,9 @@
             alt="Robocup German Open 2026 - 1st Place in SML Category"
           />
           <div class="achievement-body">
-            <div class="achievement-date" data-en="March 2026" data-de="März 2026">March 2026</div>
-            <div class="achievement-title" data-en="Robocup German Open 2026 - 1st Place in SML Category" data-de="Robocup German Open 2026 - 1. Platz in der SML Kategorie">Robocup German Open 2026 - 1st Place in SML Category</div>
+            <div class="achievement-date" data-en="March 2026" data-de="März 2026"></div>
+            <div class="achievement-title" data-en="Robocup German Open 2026 - 1st Place in SML Category" data-de="Robocup German Open 2026 - 1. Platz in der SML Kategorie"></div>
             <div class="achievement-desc" data-en="Won first place in the Smart Manufacturing League at the Robocup German Open 2026." data-de="Erste Platzierung in der Smart Manufacturing League beim Robocup German Open 2026.">
-              Won first place in the Smart Manufacturing League at the Robocup German Open 2026.
             </div>
           </div>
         </div>
@@ -842,10 +828,9 @@
             alt="Shell Eco Marathon Asia 2020 Circular Economy Award"
           />
           <div class="achievement-body">
-            <div class="achievement-date" data-en="May 2020" data-de="Mai 2020">May 2020</div>
-            <div class="achievement-title" data-en="Shell Eco Marathon Asia 2020 - Circular Economy Award" data-de="Shell Eco Marathon Asia 2020 - Auszeichnung für Kreislaufwirtschaft">Shell Eco Marathon Asia 2020 - Circular Economy Award</div>
+            <div class="achievement-date" data-en="May 2020" data-de="Mai 2020"></div>
+            <div class="achievement-title" data-en="Shell Eco Marathon Asia 2020 - Circular Economy Award" data-de="Shell Eco Marathon Asia 2020 - Auszeichnung für Kreislaufwirtschaft"></div>
             <div class="achievement-desc" data-en="Received recognition for outstanding contribution to sustainable transportation solutions." data-de="Erhielt Anerkennung für herausragende Beiträge zu nachhaltigen Transportlösungen.">
-              Received recognition for outstanding contribution to sustainable transportation solutions.
             </div>
           </div>
         </div>
@@ -856,73 +841,71 @@
   <!-- ─── EXPERIENCE ─────────────────────────────────────────── -->
   <section id="experience">
     <div class="wrap">
-      <div class="section-label" data-en="Experience" data-de="Erfahrung">Experience</div>
-      <h2 data-en="Where I've worked" data-de="Wo ich gearbeitet habe">Where I've worked</h2>
+      <div class="section-label" data-en="Experience" data-de="Erfahrung"></div>
+      <h2 data-en="Where I've worked" data-de="Wo ich gearbeitet habe"></h2>
       <div class="timeline">
 
         <div class="tl-item fade-in">
-          <div class="tl-date" data-en="September 2025 – Present" data-de="September 2025 – Heute">September 2025 – Present</div>
+          <div class="tl-date" data-en="September 2025 – Present" data-de="September 2025 – Heute"></div>
           <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
           <div class="tl-content">
-            <div class="tl-role" data-en="Research Associate" data-de="Wissenschaftlicher Mitarbeiter">Research Associate</div>
-            <div class="tl-company" data-en="TH Cologne · Cologne, Germany" data-de="TH Köln · Köln, Deutschland">TH Cologne · Cologne, Germany</div>
-            <div class="tl-desc" data-en="Designing and building prototype systems for providing solutions to regional companies facing automation related problems." data-de="Entwurf und Entwicklung von Prototyp-Systemen für regionale Unternehmen mit Automatisierungsproblemen.">
-              Designing and building prototype systems for providing solutions to regional companies facing automation related problems.
+            <div class="tl-role" data-en="Research Associate" data-de="Wissenschaftlicher Mitarbeiter"></div>
+            <div class="tl-company" data-en="TH Cologne · Cologne, Germany" data-de="TH Köln · Köln, Deutschland"></div>
+            <div class="tl-desc" data-en="Designing and building prototype systems for providing solutions to regional companies facing automation related problems under Innofaktur project." data-de="Entwurf und Entwicklung von Prototyp-Systemen für regionale Unternehmen mit Automatisierungsproblemen unter dem Innofaktur Projekt.">
             </div>
             <div class="tl-tags">
               <span class="tag">Python</span><span class="tag">ROS2</span><span class="tag">Docker</span><span class="tag">Unity</span><span class="tag">Linux</span><span class="tag">C#</span>
-              <span class="tag" data-en="Machine Learning" data-de="Maschinelles Lernen">Machine Learning</span>
+              <span class="tag" data-en="Machine Learning" data-de="Maschinelles Lernen"></span>
             </div>
           </div>
         </div>
 
         <div class="tl-item fade-in">
-          <div class="tl-date" data-en="April 2024 – April 2025" data-de="April 2024 – April 2025">April 2024 – April 2025</div>
+          <div class="tl-date" data-en="April 2024 – April 2025" data-de="April 2024 – April 2025"></div>
           <div class="tl-line"><div class="tl-dot" style="background:var(--accent2)"></div><div class="tl-connector"></div></div>
           <div class="tl-content">
-            <div class="tl-role" data-en="AI Engineering Intern" data-de="Praktikant KI-Entwicklung">AI Engineering Intern</div>
-            <div class="tl-company" style="color:var(--accent2)" data-en="Volkswagen AG · Wolfsburg, Germany" data-de="Volkswagen AG · Wolfsburg, Deutschland">Volkswagen AG · Wolfsburg, Germany</div>
-            <div class="tl-desc" data-en="Built a physics-incorporated neural network (PINN) model for autonomous driving applications." data-de="Entwickelte ein physikalisch-integriertes neuronales Netz (PINN) für Anwendungen des autonomen Fahrens.">
-              Built a physics-incorporated neural network (PINN) model for autonomous driving applications.
+            <div class="tl-role" data-en="AI Engineering Intern" data-de="Praktikant KI-Entwicklung"></div>
+            <div class="tl-company" style="color:var(--accent2)" data-en="Volkswagen AG · Wolfsburg, Germany" data-de="Volkswagen AG · Wolfsburg, Deutschland"></div>
+            <div class="tl-desc" data-en="Built a physics informed neural network (PINN) model for autonomous driving applications." data-de="Entwickelte ein physikalisch informiertes neuronales Netz (PINN) für Anwendungen des autonomen Fahrens.">
+
             </div>
             <div class="tl-tags">
               <span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">PyTorch</span><span class="tag">RLLib</span>
-              <span class="tag" data-en="Vehicle Dynamics" data-de="Fahrzeugdynamik">Vehicle Dynamics</span>
-              <span class="tag" data-en="Vehicle Control" data-de="Fahrzeugsteuerung">Vehicle Control</span>
-              <span class="tag" data-en="Machine Learning" data-de="Maschinelles Lernen">Machine Learning</span>
+              <span class="tag" data-en="Vehicle Dynamics" data-de="Fahrzeugdynamik"></span>
+              <span class="tag" data-en="Vehicle Control" data-de="Fahrzeugsteuerung"></span>
+              <span class="tag" data-en="Machine Learning" data-de="Maschinelles Lernen"></span>
             </div>
           </div>
         </div>
 
         <div class="tl-item fade-in">
-          <div class="tl-date" data-en="August 2023 – November 2023" data-de="August 2023 – November 2023">August 2023 – November 2023</div>
+          <div class="tl-date" data-en="August 2023 – November 2023" data-de="August 2023 – November 2023"></div>
           <div class="tl-line"><div class="tl-dot" style="background:var(--accent2)"></div><div class="tl-connector"></div></div>
           <div class="tl-content">
-            <div class="tl-role" data-en="Student Assistant" data-de="Wissenschaftliche Hilfskraft">Student Assistant</div>
-            <div class="tl-company" data-en="University of Siegen · Siegen, Germany" data-de="Universität Siegen · Siegen, Deutschland">University of Siegen · Siegen, Germany</div>
+            <div class="tl-role" data-en="Student Assistant" data-de="Wissenschaftliche Hilfskraft"></div>
+            <div class="tl-company" data-en="University of Siegen · Siegen, Germany" data-de="Universität Siegen · Siegen, Deutschland"></div>
             <div class="tl-desc" data-en="Contributed to the development and creation of a MATLAB program for rotor-dynamic calculations and vibration isolation." data-de="Trug zur Entwicklung eines MATLAB-Programms für Rotordynamikberechnungen und Schwingungsisolation bei.">
-              Contributed to the development and creation of a MATLAB program for rotor-dynamic calculations and vibration isolation.
             </div>
             <div class="tl-tags">
               <span class="tag">MATLAB</span>
-              <span class="tag" data-en="Machine Dynamics" data-de="Maschinendynamik">Machine Dynamics</span>
+              <span class="tag" data-en="Machine Dynamics" data-de="Maschinendynamik"></span>
             </div>
           </div>
         </div>
 
         <div class="tl-item fade-in">
-          <div class="tl-date" data-en="October 2020 – August 2021" data-de="Oktober 2020 – August 2021">October 2020 – August 2021</div>
+          <div class="tl-date" data-en="October 2020 – August 2021" data-de="Oktober 2020 – August 2021"></div>
           <div class="tl-line"><div class="tl-dot" style="background:var(--accent2)"></div><div class="tl-connector"></div></div>
           <div class="tl-content">
-            <div class="tl-role" data-en="Project Associate" data-de="Projektmitarbeiter">Project Associate</div>
-            <div class="tl-company" data-en="Indian Institute of Space Science and Technology · Kerala, India" data-de="Indian Institute of Space Science and Technology · Kerala, Indien">Indian Institute of Space Science and Technology · Kerala, India</div>
+            <div class="tl-role" data-en="Project Associate" data-de="Projektmitarbeiter"></div>
+            <div class="tl-company" data-en="Indian Institute of Space Science and Technology · Kerala, India" data-de="Indian Institute of Space Science and Technology · Kerala, Indien"></div>
             <div class="tl-desc" data-en="Contributed to the development of a rover simulation system using rigid body dynamics." data-de="Trug zur Entwicklung eines Rover-Simulationssystems auf Basis starrer Körperdynamik bei.">
-              Contributed to the development of a rover simulation system using rigid body dynamics.
+
             </div>
             <div class="tl-tags">
               <span class="tag">MATLAB</span>
-              <span class="tag" data-en="Robotics" data-de="Robotik">Robotics</span>
-              <span class="tag" data-en="Machine Dynamics" data-de="Maschinendynamik">Machine Dynamics</span>
+              <span class="tag" data-en="Robotics" data-de="Robotik"></span>
+              <span class="tag" data-en="Machine Dynamics" data-de="Maschinendynamik"></span>
             </div>
           </div>
         </div>
@@ -934,60 +917,36 @@
   <!-- ─── PROJECTS ──────────────────────────────────────────── -->
   <section id="projects">
     <div class="wrap">
-      <div class="section-label" data-en="Projects" data-de="Projekte">Projects</div>
-      <h2 data-en="Things I've built" data-de="Was ich gebaut habe">Things I've built</h2>
+      <div class="section-label" data-en="Projects" data-de="Projekte"></div>
+      <h2 data-en="Things I've built" data-de="Was ich gebaut habe"></h2>
       <div class="projects-grid">
         
         <div class="project-card fade-in">
           <div class="project-num">01</div>
-          <div class="project-title" data-en="UR in VR" data-de="UR in VR">UR in VR</div>
+          <div class="project-title" data-en="UR in VR" data-de="UR in VR"></div>
           <div class="project-desc" data-en="A VR app where people could work with Universal Robots arm and test out the functionalities of teach pendant. The learning can easily be transferred to a real robot." data-de="Eine VR-App, in der Menschen mit dem Universal Robots-Arm arbeiten und die Funktionalitäten des Teach-Pendants testen können. Das Gelernte kann leicht auf einen echten Roboter übertragen werden.">
-            A VR app where people could work with Universal Robots arm and test out the functionalities of teach pendant. The learning can easily be transferred to a real robot.
           </div>
           <div class="tl-tags" style="margin-bottom:16px">
             <span class="tag">Unity</span><span class="tag">C#</span>
           </div>
-          <!-- <div class="project-links">
-            <a class="project-link" href="#" data-en="GitHub →" data-de="GitHub →">GitHub →</a>
-          </div> -->
         </div>
 
         <div class="project-card fade-in">
           <div class="project-num">02</div>
-          <div class="project-title" data-en="Job advertisement picker and analyser" data-de="Arbeitsstellen Sucher und Analyser">Job advertisement picker and analyser</div>
-          <div class="project-desc" data-en="Finds new jobs added to specific websites and compare against a CV to find whether the advertisement matches with the CV." data-de="Findet neue Stellenanzeigen auf spezifischen Websites und vergleicht sie mit einem Lebenslauf, um festzustellen, ob die Anzeige mit dem Lebenslauf übereinstimmt.">
-            Finds new jobs added to specific websites and compare against a CV to find whether the advertisement matches with the CV.
-          </div>
-          <div class="tl-tags" style="margin-bottom:16px">
-            <span class="tag">Python</span><span class="tag">HTML</span><span class="tag">Github actions</span><span class="tag" data-en="AI" data-de="KI">AI</span>
-          </div>
-          <!-- <div class="project-links">
-            <a class="project-link" href="#" data-en="GitHub →" data-de="GitHub →">GitHub →</a>
-            <a class="project-link" href="#" style="color:var(--accent2)" data-en="Demo →" data-de="Demo →">Demo →</a>
-          </div> -->
-        </div>
-
-        <div class="project-card fade-in">
-          <div class="project-num">03</div>
-          <div class="project-title" data-en="Robocup SML robot" data-de="Robocup SML robot">Robocup SML robot</div>
+          <div class="project-title" data-en="Robocup SML robot" data-de="Robocup SML robot"></div>
           <div class="project-desc" data-en="I was part of the team which built a pick and place mobile robot and a assembler robot. We won the Robocup SML Germany 2026 competition. I contributed mainly to ROS2 and Nav2 systems." data-de="Ich war Teil des Teams, das einen Pick-and-Place-Mobile-Roboter und einen Assembler-Roboter gebaut hat. Wir gewannen den Robocup SML Germany 2026 Wettbewerb. Ich trug hauptsächlich zu ROS2 und Nav2-Systemen bei.">
-            I was part of the team which built a pick and place mobile robot and a assembler robot. We won the Robocup SML Germany 2026 competition. I contributed mainly to ROS2 and Nav2 systems.
           </div>
           <div class="tl-tags" style="margin-bottom:16px">
             <span class="tag">ROS2</span><span class="tag">Nav2</span><span class="tag">MicroROS</span>
           </div>
-          <!-- <div class="project-links">
-            <a class="project-link" href="#" data-en="GitHub →" data-de="GitHub →">GitHub →</a> -->
-          <!-- </div> -->
         </div>
 
     
 
         <div class="project-card fade-in">
-          <div class="project-num">04</div>
-          <div class="project-title" data-en="AI based trajectory tracking controller" data-de="KI-basierter Trajektorienverfolgung Steurung">AI based trajectory tracking controller</div>
+          <div class="project-num">03</div>
+          <div class="project-title" data-en="AI based trajectory tracking controller" data-de="KI-basierter Trajektorienverfolgung Steuerung"></div>
           <div class="project-desc" data-en="Both feedforward and feedback controllers of a control system is replaced by small neural networks. Final output is the steering angle of the vehicle based on environment and target trajectory." data-de="Sowohl die Vorwärts- als auch die Rückwärtsregler eines Steuersystems werden durch kleine neuronale Netze ersetzt. Die endgültige Ausgabe ist der Lenkwinkel des Fahrzeugs basierend auf der Umgebung und der Zieltrajektorie.">
-            Both feedforward and feedback controllers of a control system is replaced by small neural networks. Final output is the steering angle of the vehicle based on environment and target trajectory.
           </div>
           <div class="tl-tags" style="margin-bottom:16px">
             <span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">RL</span>
@@ -998,10 +957,9 @@
         </div>
 
         <div class="project-card fade-in">
-          <div class="project-num">05</div>
-          <div class="project-title" data-en="Improving accuracy of image classifiers" data-de="Verbesserung der Genauigkeit von Bildklassifizierern">Improving accuracy of image classifiers</div>
-          <div class="project-desc" data-en="Deep learning image classifier models were retrained in HPC clusters using data augmentation techniques that improved the accuracy from nearly 30 percent to about 90 percent when tested on CIFAR10-C dataset. " data-de="Tiefes Lernen-Bildklassifizierer-Modelle wurden in HPC-Clustern mit Daten-Augmentations-Techniken erneut trainiert, wodurch die Genauigkeit von fast 30 Prozent auf etwa 90 Prozent verbessert wurde, wenn sie auf dem CIFAR10-C-Datensatz getestet wurden.">
-            Deep learning image classifier models were retrained in HPC clusters using data augmentation techniques that improved the accuracy from nearly 30 percent to about 90 percent when tested on CIFAR10-C dataset.
+          <div class="project-num">04</div>
+          <div class="project-title" data-en="Improving accuracy of image classifiers" data-de="Verbesserung der Genauigkeit von Bildklassifizierern"></div>
+          <div class="project-desc" data-en="Retrained deep learning models on HPC clusters using advanced data augmentation, achieving a 3x accuracy improvement on corrupted datasets (CIFAR10-C)." data-de="Deep Learning Modelle wurden auf HPC-Clustern unter Verwendung fortschrittlicher Datenvergrößerung neu trainiert, wodurch bei beschädigten Datensätzen (CIFAR10-C) eine dreifache Verbesserung der Genauigkeit erzielt wurde.">
           </div>
           <div class="tl-tags" style="margin-bottom:16px">
             <span class="tag">Python</span>
@@ -1011,7 +969,7 @@
         <div class="project-card fade-in" style="border-style:dashed; display:flex; align-items:center; justify-content:center; text-align:center; min-height:200px">
           <div>
             <div style="font-size:1.8rem;margin-bottom:8px">🚧</div>
-            <div style="font-size:.9rem;color:var(--muted)" data-en="More coming soon…" data-de="Mehr folgt bald…">More coming soon…</div>
+            <div style="font-size:.9rem;color:var(--muted)" data-en="More coming soon…" data-de="Mehr folgt bald…"></div>
           </div>
         </div>
 
@@ -1022,15 +980,15 @@
   <!-- ─── SKILLS ────────────────────────────────────────────── -->
   <section id="skills">
     <div class="wrap">
-      <div class="section-label" data-en="Skills" data-de="Kenntnisse">Skills</div>
-      <h2 data-en="What I work with" data-de="Womit ich arbeite">What I work with</h2>
+      <div class="section-label" data-en="Skills" data-de="Kenntnisse"></div>
+      <h2 data-en="What I work with" data-de="Womit ich arbeite"></h2>
       <div class="skills-wrapper">
 
         <div class="skill-group fade-in">
-          <div class="skill-group-title" data-en="Languages" data-de="Programmiersprachen">Languages</div>
+          <div class="skill-group-title" data-en="Programming Languages" data-de="Programmiersprachen"></div>
           <div class="skill-list">
             <span class="skill-pill highlight">Python</span>
-            <span class="skill-pill highlight">MATLAB</span>
+            <span class="skill-pill">MATLAB</span>
             <span class="skill-pill">Arduino</span>
             <span class="skill-pill">C++</span>
             <span class="skill-pill">C#</span>
@@ -1049,11 +1007,13 @@
         </div>
 
         <div class="skill-group fade-in">
-          <div class="skill-group-title" data-en="Software Tools" data-de="Software Werkzeuge">Software Tools</div>
+          <div class="skill-group-title" data-en="Software Tools" data-de="Software Werkzeuge"></div>
           <div class="skill-list">
             <span class="skill-pill highlight">Docker</span>
             <span class="skill-pill">Git</span>
-            <span class="skill-pill">CAD & 3D Printing</span>
+            <span class="skill-pill">Unity</span>
+            <span class="skill-pill">CAD</span>
+            <span class="skill-pill">3D Printing</span>
             <span class="skill-pill">LaTeX</span>
           </div>
         </div>
@@ -1062,24 +1022,26 @@
           <div class="skill-group-title" data-en="Frameworks" data-de="Frameworks">Frameworks</div>
           <div class="skill-list">
             <span class="skill-pill highlight">ROS2</span>
-            <span class="skill-pill highlight">Nav2</span>
+            <span class="skill-pill">Nav2</span>
             <span class="skill-pill">MicroROS</span>
+            <span class="skill-pill">Gazebo</span>
+            <span class="skill-pill">RViz</span>
             <span class="skill-pill">PyTorch</span>
             <span class="skill-pill">RLLib</span>
           </div>
         </div>
 
-        <div class="skill-group fade-in">
-          <div class="skill-group-title" data-en="Management" data-de="Management">Management</div>
+        <!-- <div class="skill-group fade-in">
+          <div class="skill-group-title" data-en="Management" data-de="Management"></div>
           <div class="skill-list">
             <span class="skill-pill">Jira</span>
             <span class="skill-pill">Confluence</span>
             <span class="skill-pill">OKR</span>
           </div>
-        </div>
+        </div> -->
 
-        <div class="skill-group fade-in">
-          <div class="skill-group-title" data-en="Concepts" data-de="Konzepte">Concepts</div>
+        <!-- <div class="skill-group fade-in">
+          <div class="skill-group-title" data-en="Concepts" data-de="Konzepte"></div>
           <div class="skill-list">
             <span class="skill-pill">Deep Learning</span>
             <span class="skill-pill">Neural Networks</span>
@@ -1087,7 +1049,7 @@
             <span class="skill-pill">Vehicle Dynamics</span>
             <span class="skill-pill">Vehicle Control</span>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>
@@ -1096,90 +1058,44 @@
   <!-- EDUCATION -->
   <section id="education">
     <div class="wrap">
-      <div class="section-label" data-en="Education" data-de="Ausbildung">Education</div>
-      <h2 data-en="Where I studied" data-de="Wo ich studiert habe">Where I studied</h2>
+      <div class="section-label" data-en="Education" data-de="Ausbildung"></div>
+      <h2 data-en="Where I studied" data-de="Wo ich studiert habe"></h2>
       <div class="edu-grid">
 
         <div class="edu-card fade-in">
-          <div class="edu-badge" data-en="Master's Degree" data-de="Masterabschluss">Master's Degree</div>
-          <div class="edu-degree" data-en="M.Sc. Mechatronics" data-de="M.Sc. Mechatronik">M.Sc. Mechatronics</div>
-          <div class="edu-school" data-en="University of Siegen" data-de="Universität Siegen">University of Siegen</div>
-          <div class="edu-meta" data-en="Siegen, Germany" data-de="Siegen, Deutschland">Siegen, Germany</div>
+          <div class="edu-badge" data-en="Master's Degree" data-de="Masterabschluss"></div>
+          <div class="edu-degree" data-en="M.Sc. Mechatronics" data-de="M.Sc. Mechatronik"></div>
+          <div class="edu-school" data-en="University of Siegen" data-de="Universität Siegen"></div>
+          <div class="edu-meta" data-en="Siegen, Germany" data-de="Siegen, Deutschland"></div>
           <div class="edu-divider"></div>
-          <div class="edu-detail-label" data-en="Focus Areas" data-de="Schwerpunkte">Focus Areas</div>
-          <div class="edu-detail-text" data-en="Deep Learning, Machine Learning, Machine Dynamics, Condition Monitoring, Sensorics" data-de="Deep Learning, Maschinelles Lernen, Maschinendynamik, Zustandsüberwachung, Sensorik">
-          Deep Learning, Machine Learning, Machine Dynamics, Condition Monitoring, Sensorics
-          </div>
-          <!-- <div class="edu-tags">
-            <span class="tag" data-en="Autonomous Driving" data-de="Autonomes Fahren">Autonomous Driving</span>
-            <span class="tag">PINN</span>
-            <span class="tag">PyTorch</span>
-            <span class="tag">MATLAB</span>
-          </div> -->
+          <div class="edu-detail-label" data-en="Grade: 1.5" data-de="Note: 1.5"></div>
         </div>
 
         <div class="edu-card fade-in">
-          <div class="edu-badge" data-en="Bachelor's Degree" data-de="Bachelorabschluss">Bachelor's Degree</div>
-          <div class="edu-degree" data-en="B.Tech. Mechanical Engineering" data-de="B.Tech. Maschinenbau">B.Tech. Mechanical Engineering</div>
-          <div class="edu-school" data-en="APJKTU University" data-de="APJKTU University">APJKTU University</div>
-          <div class="edu-meta" data-en="Kerala, India" data-de="Kerala, Indien">Kerala, India</div>
+          <div class="edu-badge" data-en="Bachelor's Degree" data-de="Bachelorabschluss"></div>
+          <div class="edu-degree" data-en="B.Tech. Mechanical Engineering" data-de="B.Tech. Maschinenbau"></div>
+          <div class="edu-school" data-en="APJKTU University" data-de="APJKTU University"></div>
+          <div class="edu-meta" data-en="Kerala, India" data-de="Kerala, Indien"></div>
           <div class="edu-divider"></div>
-          <div class="edu-detail-label" data-en="Focus Areas" data-de="Schwerpunkte">Focus Areas</div>
-          <div class="edu-detail-text" data-en="Mechanics of Machinery, Operations Research, Manufacturing Technology" data-de="Mechanik der Maschinen, Operations Research, Fertigungstechnik">
-            Mechanics of Machinery, Operations Research, Manufacturing Technology
-          </div>
-          <!-- <div class="edu-tags">
-            <span class="tag" data-en="Robotics" data-de="Robotik">Robotics</span>
-            <span class="tag" data-en="Thermodynamics" data-de="Thermodynamik">Thermodynamics</span>
-            <span class="tag" data-en="Manufacturing" data-de="Fertigung">Manufacturing</span>
-          </div> -->
+          <div class="edu-detail-label" data-en="Grade: 1.6" data-de="Note: 1.6"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── CONTACT ──────────────────────────────────────────── -->
+  <!-- CONTACT -->
   <section id="contact">
-    <div class="wrap">
-      <div class="section-label" data-en="Contact" data-de="Kontakt">Contact</div>
-      <h2 data-en="Let's connect" data-de="Lass uns verbinden">Let's connect</h2>
-      <div class="contact-inner">
-        <div class="contact-intro fade-in">
-          <p data-en="I'm open to new opportunities and interesting collaborations." data-de="Ich bin offen für neue Möglichkeiten und interessante Kollaborationen.">
-            I'm open to new opportunities and interesting collaborations.
-          </p>
-          <div class="contact-links">
-            <a class="contact-link-item" href="mailto:augustinraju@gmail.com">
-              <div class="contact-icon">✉</div>
-              <div>
-                <div class="contact-link-label" data-en="Email" data-de="E-Mail">Email</div>
-                <div class="contact-link-value">augustinraju@gmail.com</div>
-              </div>
-            </a>
-            <a class="contact-link-item" href="https://www.linkedin.com/in/augustinraju/" target="_blank">
-              <div class="contact-icon">in</div>
-              <div>
-                <div class="contact-link-label">LinkedIn</div>
-                <div class="contact-link-value">linkedin.com/in/augustinraju</div>
-              </div>
-            </a>
-            <a class="contact-link-item" href="https://github.com/augustinraju" target="_blank">
-              <div class="contact-icon">⌥</div>
-              <div>
-                <div class="contact-link-label">GitHub</div>
-                <div class="contact-link-value">github.com/augustinraju</div>
-              </div>
-            </a>
-            <a class="contact-link-item" href="#">
-              <div class="contact-icon">📄</div>
-              <div>
-                <div class="contact-link-label" data-en="Resume / CV" data-de="Lebenslauf">Resume / CV</div>
-                <div class="contact-link-value" data-en="Download PDF" data-de="PDF herunterladen">Download PDF</div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
+    <div class="section-label" data-en="Contact" data-de="Kontakt"></div>
+    <h2 class="contact-heading" data-en="Let's connect" data-de="Lass uns verbinden"></h2>
+    <p class="contact-sub" data-en="Open to new opportunities and interesting collaborations. Feel free to reach out." data-de="Offen für neue Möglichkeiten und interessante Kollaborationen. Melde dich gerne.">
+      Open to new opportunities and interesting collaborations. Feel free to reach out.
+    </p>
+
+        <div class="contact-buttons">
+      <a href="mailto:augustinraju@gmail.com" class="btn btn-primary" data-en="Send an Email" data-de="E-Mail senden"></a>
+      <a href="https://www.linkedin.com/in/augustinraju/" target="_blank" class="btn btn-ghost" data-en="LinkedIn" data-de="LinkedIn"></a>
+      <a href="https://github.com/augustinraju" target="_blank" class="btn btn-ghost" data-en="GitHub" data-de="GitHub"></a>
+      <a href="#" class="btn btn-ghost" data-en="Download CV" data-de="Lebenslauf herunterladen"></a>
     </div>
   </section>
 
@@ -1265,6 +1181,8 @@
         a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : '';
       });
     }, { passive: true });
+
+    setLang('en');
   </script>
 </body>
 </html>
