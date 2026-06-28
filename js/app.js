@@ -29,6 +29,8 @@
       document.querySelectorAll('[data-placeholder-en]').forEach(el => {
         el.placeholder = el.getAttribute('data-placeholder-' + lang);
       });
+      const resumeBtn = document.getElementById('resumeBtn');
+  if (resumeBtn) resumeBtn.href = resumeBtn.dataset['href' + lang.charAt(0).toUpperCase() + lang.slice(1)];
       document.documentElement.lang = lang;
     }
 
